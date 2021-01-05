@@ -20,13 +20,32 @@ provider:
   # the following line. Also, make sure to not
   # commit your .env.
   #
-  #environment:
+  environment:
+    tableName: sneakers
   #  SAMPLE_ENV_VAR: ${env:SAMPLE_ENV_VAR}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Scan
+        - dynamodb:Query
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+        - dynamodb:DescribeTable
+      Resource: "arn:aws:dynamodb:eu-central-1:130126517726:table/sneakers"
 
 functions:
   hello:
-    handler: handler.hello
+    handler: src/graphql.graphqlHandler
     events:
-      - http:
-          path: hello
-          method: get
+    - http:
+        path: graphql
+        method: post
+        cors: true
+        intergration: lambda-proxy
+    - http:
+        path: graphql
+        method: get
+        cors: true
+        intergration: lambda-proxy
