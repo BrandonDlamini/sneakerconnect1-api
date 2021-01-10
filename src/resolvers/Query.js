@@ -7,7 +7,6 @@ export const test = (args,context) => {
 export const getAllSneakers = async (args, context) => {
     const params ={
         TableName: process.env.tableName,
-       
     };
 
     try {
@@ -23,14 +22,13 @@ export const getAllSneakers = async (args, context) => {
 export const getSneakersbyBrand = async (args, context) => {
     const params = {
         TableName: process.env.tableName,
-        KeyConditionExpression: "Brand = :Brand",
-        ExpressionAttributeValues: {
-            ":Brand" : 'args.Brand'}
-        
-    }
+        FilterExpression: "#brand = :comparedBrand",
+        ExpressionAttributeNames:{"#brand": "brand"},
+        ExpressionAttributeValues: {':comparedBrand' : args.brand},
+};
 
     try {
-        const result = await dynamodbLib.call("query",params);
+        const result = await dynamodbLib.call("scan",params);
         return result.Items;
     }
 

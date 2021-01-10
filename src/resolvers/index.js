@@ -1,5 +1,5 @@
 import {test, getAllSneakers, getSneakersbyBrand} from './Query';
-import {addSneaker} from './Query';
+import {addSneaker} from './Mutation';
 
 export const resolvers ={
     Query: {
@@ -11,4 +11,4 @@ export const resolvers ={
     Mutation: {
         addSneaker: (root,args,context) => addSneaker(args, context)
     }
-}
+};

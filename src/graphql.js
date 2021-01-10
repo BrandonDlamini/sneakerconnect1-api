@@ -1,4 +1,4 @@
-const {ApolloServer} = require('apollo-server-lambda');
+import {ApolloServer} from 'apollo-server-lambda';
 import {resolvers} from './resolvers/index';
 import {schema} from './schema';
 
@@ -9,7 +9,7 @@ const server = new ApolloServer({
     tracing: true,
     introspection: true,
 
-})
+});
 
 exports.graphqlHandler = server.createHandler({
     cors: {

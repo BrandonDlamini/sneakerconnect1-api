@@ -4,12 +4,13 @@ TYPE
 """
 
 type Sneaker {
-    snekaerid: ID!
+    sneakerid: ID!
+    sneakerName: String!
     userid: ID!
     size: String!
     color: String!
     condition: String!
-    brand: Brand!
+    brand: String!
     imageUrl: String!
     postedBy: String!
 }
@@ -27,14 +28,15 @@ Query
 type Query {
     test: String!
     getAllSneakers: [Sneaker!]
-    getSneakersbyBrand(Brand: String!):[Sneaker]
+    getSneakersbyBrand(brand: String!):[Sneaker]
 }
 
 """
 Mutation
 """
 
-type Muation{
-    addSneaker( size: String!, color: String!, condition: String!, brand: String!, postedBy: String!, imageUrl: String!): Sneaker!
+type Mutation{
+    addSneaker( sneakerName: String!, size: String!, color: String!, condition: String!, brand: String!, postedBy: String!, imageUrl: String!): Sneaker!
 }
-`
+`;
+export {schema};

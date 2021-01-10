@@ -7,6 +7,7 @@ export const addSneaker = async(args,context) => {
         Item: {
             userid: uuid.v1(),
             sneakerid: uuid.v1(),
+            sneakerName: args.sneakerName,
             size: args.size,
             color: args.color,
             condition: args.condition,
@@ -17,9 +18,10 @@ export const addSneaker = async(args,context) => {
     };
 
     try {
-        await dynamodbLib.call("put", params)
+        await dynamodbLib.call("put", params);
 
         return {
+            sneakerName: args.sneakerName,
             size: args.size,
             color: args.color,
             condition: args.condition,
@@ -27,12 +29,11 @@ export const addSneaker = async(args,context) => {
             postedBy: args.postedBy,
             imageUrl: args.imageUrl,
             sneakerid: uuid.v1()
-            
         };
     }
 
     catch (e){
         console.log(e);
-    }
-}
+    };
+};
 
