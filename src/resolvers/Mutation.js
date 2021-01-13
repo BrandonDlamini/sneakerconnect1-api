@@ -5,7 +5,7 @@ export const addSneaker = async(args,context) => {
     const params = {
         TableName : process.env.tableName,
         Item: {
-            userid: uuid.v1(),
+            userid: context.event.requestContext.authorizer.claims.sub,
             sneakerid: uuid.v1(),
             sneakerName: args.sneakerName,
             size: args.size,
