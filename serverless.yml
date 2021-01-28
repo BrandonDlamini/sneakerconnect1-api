@@ -45,7 +45,7 @@ functions:
           cors: true
           integration: lambda-proxy
           authorizer:
-            arn: arn:aws:cognito-idp:eu-central-1:130126517726:userpool/eu-central-1_NgnFWziXn
+            arn: arn:aws:cognito-idp:us-east-1:130126517726:userpool/us-east-1_KHlHuwGcD
     - http:
           path: graphql
           method: get
